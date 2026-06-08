@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G3 Spelling Game Index</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --ink:#1f2937;
+      --sub:#6b7280;
+      --line:#d1d5db;
+      --accent:#2563eb;
+      --accent2:#7c3aed;
+      --soft:#eef2ff;
+      --good:#16a34a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px;
+    }
+    .hero{
+      background:linear-gradient(135deg, #ffffff, #eef2ff);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:26px;
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0;
+      font-size:34px;
+      letter-spacing:.02em;
+    }
+    .subtitle{
+      margin-top:8px;
+      color:var(--sub);
+      font-size:16px;
+      line-height:1.6;
+    }
+    .url-box{
+      margin-top:14px;
+      padding:12px 14px;
+      background:#fff;
+      border:1px dashed #a5b4fc;
+      border-radius:14px;
+      font-size:14px;
+      color:#374151;
+      word-break:break-all;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,.05);
+    }
+    .section-title{
+      font-size:22px;
+      font-weight:700;
+      margin:0 0 14px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(7, 1fr);
+      gap:12px;
+    }
+    .day-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      border-radius:16px;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:800;
+      color:#fff;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 5px 12px rgba(37,99,235,.22);
+      transition:transform .12s, box-shadow .12s, opacity .12s;
+    }
+    .day-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 16px rgba(37,99,235,.28);
+    }
+    .day-btn:active{ transform:translateY(0); }
+    .note{
+      margin-top:16px;
+      color:var(--sub);
+      font-size:14px;
+      line-height:1.7;
+    }
+    .available{
+      background:linear-gradient(135deg, #16a34a, #2563eb);
+    }
+    @media (max-width:900px){
+      .grid{grid-template-columns:repeat(5, 1fr)}
+      h1{font-size:30px}
+    }
+    @media (max-width:620px){
+      .wrap{padding:14px}
+      .grid{grid-template-columns:repeat(3, 1fr); gap:10px}
+      .day-btn{min-height:54px; font-size:16px}
+      h1{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>G3 Spelling Game</h1>
+      <div class="subtitle">Day 1〜Day 49 のスペリングゲームを選んでください。</div>
+      <div class="url-box">
+        Index URL: https://nocci-lab.github.io/G3_Spelling_Game/<br>
+        Game URL example: https://nocci-lab.github.io/G3_Spelling_Game/G3_Spelling_Game_Day1_student.html
+      </div>
+    </header>
+
+    <main class="card">
+      <div class="section-title">Student Games</div>
+      <div class="grid" id="gameGrid"></div>
+      <div class="note">
+        ※ Day 8以降も、同じファイル名ルールでアップロードすれば、このボタンから開けます。<br>
+        例：Day 8 → <strong>G3_Spelling_Game_Day8_student.html</strong>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const TOTAL_DAYS = 49;
+    const grid = document.getElementById('gameGrid');
+
+    for(let day = 1; day <= TOTAL_DAYS; day++){
+      const a = document.createElement('a');
+      a.className = 'day-btn';
+      if(day <= 7) a.classList.add('available');
+      a.textContent = `Day ${day}`;
+      a.href = `G3_Spelling_Game_Day${day}_student.html`;
+      grid.appendChild(a);
+    }
+  </script>
+</body>
+</html>
